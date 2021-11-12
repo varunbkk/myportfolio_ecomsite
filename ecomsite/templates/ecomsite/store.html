@@ -1,0 +1,46 @@
+{% extends 'ecomsite/main.html' %}
+{% load static %}
+{% block content  %}
+
+<div class="row">
+
+  <div class="col-lg-4">
+    <!-- This is the placeholder for the product pic -->
+    <img class="thumbail" src="{% static 'images/placeholder.png' %}">
+    <!-- We create a box element to contain the product name and price, right below the product pic placeholder -->
+    <!-- The box element also contains buttons to view the product and add it to the cart as well -->
+    <div class="box-element product">
+      <h6><strong>Product</strong></h6>
+      <hr>
+      <button type="button" class="btn btn-outline-secondary">Add To Cart</button>
+      <a class="btn btn-outline-success" href="#">View</a>
+      <h4 style="display: inline-block; float: right"><strong>$20</strong></h4>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <!-- We repeat the above because there are there are 3 columns of products per page -->
+    <img class="thumbail" src="{% static 'images/placeholder.png' %}">
+    <div class="box-element product">
+      <h6><strong>Product</strong></h6>
+      <hr>
+      <button type="button" class="btn btn-outline-secondary">Add To Cart</button>
+      <a class="btn btn-outline-success" href="#">View</a>
+      <h4 style="display: inline-block; float: right"><strong>$15</strong></h4>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <img class="thumbail" src="{% static 'images/placeholder.png' %}">
+    <div class="box-element product">
+      <h6><strong>Product</strong></h6>
+      <hr>
+      <button type="button" class="btn btn-outline-secondary">Add To Cart</button>
+      <a class="btn btn-outline-success" href="#">View</a>
+      <h4 style="display: inline-block; float: right"><strong>$10</strong></h4>
+    </div>
+  </div>
+
+
+</div>
+{% endblock %}
