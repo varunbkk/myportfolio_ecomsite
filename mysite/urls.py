@@ -16,7 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
+from django.conf.urls.static import static
+from django.conf import settings
+
+
 urlpatterns = [
     path('',include('ecomsite.urls')),
     path('admin/', admin.site.urls),
 ]
+
+# + means we are appending to urlpatterns
+# We're grabbing the MEDIA_URL and setting that to the MEDIA_ROOT folder
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
