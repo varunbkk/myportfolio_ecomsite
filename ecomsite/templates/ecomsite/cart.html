@@ -13,8 +13,9 @@
       <br>
       <table class="table">
         <tr>
-          <th><h5>Items: <strong>3</strong></h5></th>
-          <th><h5>Total: <strong>$30</strong></h5></th>
+          <!-- We access the get_cart_total and get_cart_items functions via the order key passed in the context dict -->
+          <th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
+          <th><h5>Grand Total: <strong>${{order.get_cart_total|floatformat:2}}</strong></h5></th>
           <th>
             <a style="float:right; margin: 5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
           </th>
@@ -26,6 +27,7 @@
     <div class="box-element">
       <!-- Each div inside the cart-row div represents a column -->
     <!-- We're using Bootstrap flexbox grid system to create separation between each of the 5 columns -->
+
       <div class="cart-row">
         <div style="flex:2"></div>
         <div style="flex:2"><strong>Item</strong></div>
@@ -33,20 +35,22 @@
         <div style="flex:1"><strong>Quantity</strong></div>
         <div style="flex:1"><strong>Total</strong></div>
       </div>
-
+      {% for item in items %}
       <div class="cart-row">
-        <div style="flex:2"><img class="row-image" src="{% static 'images/placeholder.png' %}"></div>
-        <div style="flex:2"><p>Product1</p></div>
-        <div style="flex:1"><p>$20</p></div>
+        <div style="flex:2"><img class="row-image" src="{{item.product.image.url}}"></div>
+        <div style="flex:2"><p>{{item.product.name}}</p></div>
+        <div style="flex:1"><p>${{item.product.price|floatformat:2}}</p></div>
         <div style="flex:1">
-          <p class="quantity">2</p>
+          <p class="quantity">{{item.quantity}}</p>
           <div class="quantity">
             <img src="{% static 'images/arrow-up.png' %}" class="chg-quantity">
             <img src="{% static 'images/arrow-down.png' %}" class="chg-quantity">
           </div>
         </div>
-        <div style="flex:1"><p>$32</p></div>
+        <!-- We can access the get_total function to get the order items total -->
+        <div style="flex:1"><p>${{item.get_total|floatformat:2}}</p></div>
       </div>
+      {% endfor %}
 
     </div>
 
