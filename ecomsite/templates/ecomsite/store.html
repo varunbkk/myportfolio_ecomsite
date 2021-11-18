@@ -12,7 +12,9 @@
     <div class="box-element product">
       <h6><strong>{{product.name}}</strong></h6>
       <hr>
-      <button type="button" class="btn btn-outline-secondary">Add To Cart</button>
+      <!-- We're adding a custom data attribute to the button to know which product was clicked -->
+      <!-- This will be useful later -->
+      <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
       <a class="btn btn-outline-success" href="#">View</a>
       <h4 style="display: inline-block; float: right"><strong>${{product.price|floatformat:2}}</strong></h4>
     </div>
