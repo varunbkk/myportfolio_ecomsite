@@ -48,7 +48,7 @@ class Order(models.Model):
     # This function checks if we have any physical items in the cart
     @property
     def shipping(self):
-        shipping = false
+        shipping = False
         orderitems=self.orderitem_set.all()
         for i in orderitems:
             if i.product.digital == False:
