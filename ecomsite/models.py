@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+# Customer model for which user is a OneToOneField with Django's built-in User model
+# This is because there is only one customer per one user
 class Customer(models.Model):
     user = models.OneToOneField(User,null=True, blank=True,on_delete=models.CASCADE)
     name = models.CharField(max_length=200,null=True)
@@ -10,6 +12,7 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
+# Product model
 class Product(models.Model):
     name = models.CharField(max_length=200,null=True)
     price = models.DecimalField(max_digits=7,decimal_places=2)
@@ -19,6 +22,15 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def imageURL(self):
+        try:
+            url=self.image.url
+        except:
+            url = ''
+        return url
+
+# Order model
 class Order(models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.SET_NULL, null=True,blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
@@ -69,7 +81,7 @@ class OrderItem(models.Model):
     def get_total(self):
         total = self.product.price * self.quantity
         return total
-
+# Shipping Address model
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.SET_NULL, null=True,blank=True)
     order = models.ForeignKey(Order,on_delete=models.SET_NULL, null=True,blank=True)
