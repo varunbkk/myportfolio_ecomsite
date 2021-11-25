@@ -9,14 +9,13 @@
     <img class="thumbail" src="{{product.imageURL}}">
     <!-- We create a box element to contain the product name and price, right below the product pic placeholder -->
     <!-- The box element also contains buttons to view the product and add it to the cart as well -->
-    <div class="box-element product">
+    <div class="box-element-product">
       <h6><strong>{{product.name}}</strong></h6>
       <hr>
       <!-- We're adding a custom data attribute to the button to know which product was clicked -->
       <!-- This will be useful later -->
-      <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-      <a class="btn btn-outline-success" href="#">View</a>
-      <h4 style="display: inline-block; float: right"><strong>${{product.price|floatformat:2}}</strong></h4>
+      <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-primary add-btn update-cart">Add to Cart</button>
+      <h5 style="display: inline-block; float: right"><strong>€{{product.price|floatformat:2}}</strong></h5>
     </div>
     <br>
   </div>
