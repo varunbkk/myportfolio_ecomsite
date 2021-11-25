@@ -15,7 +15,7 @@
         <tr>
           <!-- We access the get_cart_total and get_cart_items functions via the order key passed in the context dict -->
           <th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
-          <th><h5>Grand Total: <strong>${{order.get_cart_total|floatformat:2}}</strong></h5></th>
+          <th><h5>Grand Total: <strong>€{{order.get_cart_total|floatformat:2}}</strong></h5></th>
           <th>
             <a style="float:right; margin: 5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
           </th>
@@ -31,24 +31,23 @@
       <div class="cart-row">
         <div style="flex:2"></div>
         <div style="flex:2"><strong>Item</strong></div>
-        <div style="flex:1"><strong>Price</strong></div>
-        <div style="flex:1"><strong>Quantity</strong></div>
+        <div style="flex:2"><strong>Price</strong></div>
+        <div style="flex:2"><strong>Quantity</strong></div>
         <div style="flex:1"><strong>Total</strong></div>
       </div>
       {% for item in items %}
       <div class="cart-row">
         <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
         <div style="flex:2"><p>{{item.product.name}}</p></div>
-        <div style="flex:1"><p>${{item.product.price|floatformat:2}}</p></div>
-        <div style="flex:1">
-          <p class="quantity">{{item.quantity}}</p>
+        <div style="flex:2"><p>€{{item.product.price|floatformat:2}}</p></div>
+        <div style="flex:2"><p class="quantity">{{item.quantity}}</p>
           <div class="quantity">
             <img data-product="{{item.product.id}}" data-action="add" src="{% static 'images/arrow-up.png' %}" class="chg-quantity update-cart">
             <img data-product="{{item.product.id}}" data-action="remove"  src="{% static 'images/arrow-down.png' %}" class="chg-quantity update-cart">
           </div>
         </div>
         <!-- We can access the get_total function to get the order items total -->
-        <div style="flex:1"><p>${{item.get_total|floatformat:2}}</p></div>
+        <div style="flex:1"><p>€{{item.get_total|floatformat:2}}</p></div>
       </div>
       {% endfor %}
 
