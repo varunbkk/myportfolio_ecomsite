@@ -1,0 +1,40 @@
+{% extends 'ecomsite/main.html' %}
+{% block content %}
+
+<div class="col-lg">
+
+  <div class="box-element">
+    <h4>Welcome to MyShop!</h4>
+    <br>
+    <h5>Feel free to shop as a:</h5>
+    <ul>
+      <li>Guest - no login required</li>
+      <li>Existing User</li>
+      <li>New User</li>
+    </ul>
+    <br>
+    <h5>Existing User Details:</h5>
+    <br>
+
+    <table class="welcome table">
+      <thead>
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>newuser</td>
+          <td>newmyshop</td>
+        </tr>
+
+      </tbody>
+    </table>
+    <br>
+    <a href="{% url 'signup' %}" class="btn btn-info" role="button">Create New User</a>
+  </div>
+
+</div>
+
+{% endblock %}

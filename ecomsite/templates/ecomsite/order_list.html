@@ -1,0 +1,34 @@
+{% extends 'ecomsite/main.html' %}
+{% block content  %}
+
+<div class="col-lg">
+  <h5>My Orders:</h5>
+  <hr>
+    {% for order in orders %}
+    <div class="box-element-summary">
+    <h5><strong>Order Number:</strong> {{order.id}}</h5>
+    <h5><strong>Order Date:</strong> {{order.date_ordered|date:'d/m/Y'}}</h5>
+    <br>
+    <div class="cart-row">
+      <div style="flex:2"></div>
+      <div style="flex:2"><strong>Item</strong></div>
+      <div style="flex:2"><strong>Price</strong></div>
+      <div style="flex:1"><strong>Quantity</strong></div>
+    </div>
+    <!-- We can access the OrderItem object (child) from the parent (Order) via this way -->
+    {% for item in order.orderitem_set.all %}
+    <div class="cart-row">
+      <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+      <div style="flex:2"><p>{{item.product.name}}</p></div>
+      <div style="flex:2"><p>€{{item.product.price|floatformat:2}}</p></div>
+      <div style="flex:1"><p>x{{item.quantity}}</p></div>
+    </div>
+    {% endfor %}
+    <h5>Total Items:   <strong>{{order.get_cart_items}}</strong></h5>
+    <h5>Grand Total:   <strong>€{{order.get_cart_total|floatformat:2}}</strong></h5>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

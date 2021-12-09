@@ -1,16 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 # Create your models here.
 
 # Customer model for which user is a OneToOneField with Django's built-in User model
 # This is because there is only one customer per one user
 class Customer(models.Model):
     user = models.OneToOneField(User,null=True, blank=True,on_delete=models.CASCADE)
-    name = models.CharField(max_length=200,null=True)
+    first_name = models.CharField(max_length=20,null=True)
+    last_name = models.CharField(max_length=20,null=True)
     email = models.CharField(max_length=200,null=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.first_name}{self.last_name}"
 
 # Product model
 class Product(models.Model):
@@ -18,6 +22,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=7,decimal_places=2)
     image = models.ImageField(null=True,blank=True)
     digital = models.BooleanField(default=False)
+    description = models.TextField(null=True,blank=True)
 
     def __str__(self):
         return self.name
@@ -29,6 +34,10 @@ class Product(models.Model):
         except:
             url = ''
         return url
+
+    def get_absolute_url(self):
+        return reverse('product_detail',kwargs={'id':self.id})
+
 
 # Order model
 class Order(models.Model):
@@ -81,6 +90,7 @@ class OrderItem(models.Model):
     def get_total(self):
         total = self.product.price * self.quantity
         return total
+
 # Shipping Address model
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.SET_NULL, null=True,blank=True)

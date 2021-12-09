@@ -1,0 +1,17 @@
+{% extends 'ecomsite/main.html' %}
+{% block content %}
+
+<div class="product-detail">
+  <img class="product-detail-image" src="{{product.imageURL}}">
+</div>
+<div class="product-detail">
+  <h5><strong>{{product.name}}</strong></h5>
+  <h5 style="display: inline-block; left"><strong>€{{product.price|floatformat:2}}</strong></h5>
+  <h6>{{product.description}}</h6>
+  <!-- We're adding a custom data attribute to the button to know which product was clicked -->
+  <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-primary add-btn btn-sm update-cart">Add to Cart</button>
+  <input type="button" class="btn btn-outline-dark btn-sm" value="Back" onclick="javascript:history.go(-1);">
+</div>
+
+
+{% endblock %}

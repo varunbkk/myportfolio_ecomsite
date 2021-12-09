@@ -1,0 +1,188 @@
+body
+{
+  font-family: 'Assistant';
+  src: url('../fonts/Assistant-Light.otf');
+}
+
+/* This maintains the image's aspect ratio whenever the page is re-sized  */
+img
+{
+  object-fit: contain;
+}
+
+/* We use the custom property to assign a custom color to the navbar as below   */
+.navbar-custom
+{
+	background-color: #145369;
+
+}
+
+.navbar-brand,.nav-link,#navbarSupportedContent
+{
+  color:#fff;
+}
+
+/* this sets the correct size and margin for the cart icon on the navbar   */
+#cart-icon
+{
+  width:25px;
+  margin-left:15px;
+  display: inline-block;
+}
+
+/* this sets the properties for the cart total located above the cart icon  */
+#cart-total
+{
+  display:block;
+  background-color: red;
+  color:#fff;
+  width: 20px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.btn
+{
+  border-radius: 12px;
+}
+
+/* this sets the box element properties that are used across the store,cart and checkout pages  */
+.box-element
+{
+	box-shadow: 0px 0px 3px;
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.box-element-summary,.box-element-list
+{
+	box-shadow: 0px 0px 3px;
+	background-color: #FFF;
+	border-radius: 10px;
+	padding: 10px;
+  text-align: center;
+}
+
+/* Specific box-element for each product on the store page  */
+.box-element-product
+{
+	box-shadow: 0px 0.5px 1px;
+	background-color: #FAF9F9;
+	border-radius: 10px;
+	padding: 10px;
+
+}
+
+
+
+.thumbnail
+{
+  width: 100%;
+	height: 200px;
+	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+  -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+  box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+  background-color: #FFF;
+  border-radius: 10px;
+
+}
+
+.box-element-signup
+{
+  width:100%;
+  box-shadow: 1px 1px 6px;
+	background-color: #C2DFF8;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.product-detail
+{
+  box-shadow: 1px 1px 3px;
+  margin: auto;
+  width:100%;
+  text-align:left;
+  border-radius:10px;
+  padding:10px
+}
+
+.product-detail-image
+{
+  width:100%;
+  height:400px;
+
+}
+
+.row-image{
+	width: 80px;
+}
+
+/* This assigns the properties to the item qty details - which also relates to the up/down arrow icons for changing the qty */
+.quantity
+{
+	display: inline-block;
+	padding-right:10px;
+
+}
+
+/* This assigns the properties to up/down arrow icons themselves */
+.chg-quantity
+{
+	width: 12px;
+	cursor: pointer;
+	display: block;
+  margin-top: 5px;
+	transition:.1s;
+}
+
+/* This assigns the properties for the rows inside box element #2 that contains the details of the shopping cart, before checkout */
+.cart-row
+{
+	display: flex;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ececec;
+
+}
+
+.product{
+	border-radius: 0 0 4px 4px;
+}
+
+.hidden{
+	display: none!important;
+}
+
+/* This assigns the properties to up/down arrow icons themselves */
+.form-field{
+	width:250px;
+	display: inline-block;
+	padding: 5px;
+}
+
+.jumbotron
+{
+  width: 75%;
+  margin:auto;
+  border-radius: 10px;
+}
+
+.form-control
+{
+  width: 100%;
+  border-radius:10px;
+  font-size: 0.8em;
+
+}
+
+.form-dropdown
+{
+  width: 100%;
+  border-radius:10px;
+  font-size: 0.8em;
+
+}

@@ -1,25 +1,82 @@
 {% extends 'ecomsite/main.html' %}
 {% load static %}
+
 {% block content  %}
 
-<div class="row">
+<!-- The selectable options that determine the sort criteria for the product list -->
+<!-- The value is sent to the products view for processing, via an Ajax call in the script below -->
+<select id="sort" onchange="sort()" class="form-dropdrown">
+  <option value="id" selected="selected">Default</option>
+  <option value="price">Price(lowest first)</option>
+  <option value="name">Products(A-Z)</option>
+</select>
+<br>
+
+<div id="original-output" class="row">
   {% for product in products %}
   <div class="col-lg-4">
-    <!-- This is the placeholder for the product pic -->
-    <img class="thumbail" src="{{product.imageURL}}">
-    <!-- We create a box element to contain the product name and price, right below the product pic placeholder -->
-    <!-- The box element also contains buttons to view the product and add it to the cart as well -->
+    <!-- Placeholder for the product pic -->
+    <img class="thumbnail" src="{{product.imageURL}}">
     <div class="box-element-product">
       <h6><strong>{{product.name}}</strong></h6>
       <hr>
-      <!-- We're adding a custom data attribute to the button to know which product was clicked -->
-      <!-- This will be useful later -->
-      <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-primary add-btn update-cart">Add to Cart</button>
+
+      <a href="{% url 'detail' product.id %}" class="btn btn-outline-info">View</a>
       <h5 style="display: inline-block; float: right"><strong>€{{product.price|floatformat:2}}</strong></h5>
     </div>
     <br>
   </div>
   {% endfor %}
+
 </div>
+
+<!-- Div that contains the sorted product list which is dyamically inserted into it, as per the user's selection above  -->
+<div id="sort-output" class="row">
+
+</div>
+
+<script type="text/javascript">
+  const originalOutput = document.getElementById('original-output');
+  const sortOutput = document.getElementById('sort-output');
+
+  function sort()
+  {
+    var sortid = $('#sort').val();
+    var url = '/products/'
+    sortOutput.innerHTML = ''
+    // Ajax call that is sent to the products view -->
+    $.ajax({
+      async:true,
+      url: url,
+      type:'GET',
+      headers:{
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRFToken':csrftoken,
+      },
+      data:{'sortid':sortid}
+    }).done(function(data){
+      console.log("data",data);
+      originalOutput.innerHTML = ''
+      data.forEach((item) => {
+        // Dynamic content (the sorted product list) being inserted into the sort-output div  -->
+        sortOutput.innerHTML += `
+        <div class="col-lg-4">
+          <img class="thumbnail" src="images/${item.image}">
+
+          <div class="box-element-product">
+            <h6><strong>${item.name}</strong></h6>
+            <hr>
+
+            <a href="products/${item.id}" class="btn btn-outline-info">View</a>
+            <h5 style="display: inline-block; float: right"><strong>€${item.price}</strong></h5>
+          </div>
+          <br>
+        </div>
+        `;
+      });
+
+    });
+  }
+</script>
 
 {% endblock %}

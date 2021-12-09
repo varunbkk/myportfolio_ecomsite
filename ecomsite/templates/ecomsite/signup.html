@@ -1,0 +1,13 @@
+{% extends "ecomsite/main.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="box-element-signup">
+    <h5><b>Register New User:</b></h5>
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Register" class="btn btn-success">
+    </form>
+</div>
+{% endblock %}

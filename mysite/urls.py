@@ -25,9 +25,9 @@ urlpatterns = [
     path('',include('ecomsite.urls')),
     path('accounts/login/',auth_views.LoginView.as_view(),name='login'),
     path('accounts/logout/',auth_views.LogoutView.as_view(),name='logout'),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls)
 ]
 
 # + means we are appending to urlpatterns
 # We're grabbing the MEDIA_URL and setting that to the MEDIA_ROOT folder
-urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

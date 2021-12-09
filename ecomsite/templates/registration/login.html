@@ -1,21 +1,18 @@
 {% extends 'ecomsite/main.html' %}
 
 {% block content %}
-<div class="row">
-  <div class="col-lg-6">
-    <div class="box-element" id="form-wrapper">
-      <h4><b>Please enter your login details below:</b></h4>
-      <form method="POST" id="form" action="{% url 'login' %}">
-        {% csrf_token %}
-        <div class="form-field">
-          {{ form.as_p }}
-          <input type="submit" class='btn btn-primary' value="Login" />
-          <input type="hidden" name="next" value="{{ next }}" />
-        </div>
-      </form>
+<div class="jumbotron">
+  <h5><b>Sign In:</b></h5>
+  <form method="POST" id="form" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="form-field">
+      {{ form.as_p }}
+      <input type="submit" class='btn btn-warning' value="Sign In" />
+      <input type="hidden" name="next" value="{{ next }}" />
     </div>
-  </div>
+  </form>
 </div>
+
 
 
 {% endblock %}
