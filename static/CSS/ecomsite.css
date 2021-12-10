@@ -25,7 +25,8 @@ img
 /* this sets the correct size and margin for the cart icon on the navbar   */
 #cart-icon
 {
-  width:25px;
+  height: auto;
+  width:30px;
   margin-left:15px;
   display: inline-block;
 }
