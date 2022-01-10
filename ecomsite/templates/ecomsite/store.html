@@ -46,9 +46,7 @@
     sortOutput.innerHTML = ''
     // Ajax call that is sent to the products view -->
     $.ajax({
-      async:true,
       url: url,
-      type:'GET',
       headers:{
         'X-Requested-With': 'XMLHttpRequest',
         'X-CSRFToken':csrftoken,
